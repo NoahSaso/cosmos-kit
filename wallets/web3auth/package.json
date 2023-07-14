@@ -11,8 +11,8 @@
   "homepage": "https://github.com/cosmology-tech/cosmos-kit#readme",
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",
-  "main": "dist/index.mjs",
-  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "directories": {
     "lib": "src",
@@ -55,7 +55,9 @@
     ]
   },
   "dependencies": {
+    "@chainsafe/ssz": "^0.11.1",
     "@cosmos-kit/core": "^2.0.1-beta.2",
+    "@ethersproject/providers": "^5.7.2",
     "@solana/web3.js": "^1.77.3",
     "@toruslabs/eccrypto": "^2.1.1",
     "@web3auth/base": "^5.1.0",
@@ -64,10 +66,8 @@
     "libsodium-wrappers-sumo": "^0.7.11"
   },
   "peerDependencies": {
-    "@chainsafe/ssz": "^0.11.1",
     "@cosmjs/amino": ">= 0.28",
     "@cosmjs/proto-signing": ">= 0.28",
-    "@ethersproject/providers": "^5.7.2",
     "@keplr-wallet/cosmos": ">= 0.10",
     "chain-registry": "*",
     "cosmjs-types": ">= 0.5"

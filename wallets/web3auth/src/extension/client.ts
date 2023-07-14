@@ -5,6 +5,7 @@ import { makeADR36AminoSignDoc } from '@keplr-wallet/cosmos';
 import eccrypto from '@toruslabs/eccrypto';
 import { UserInfo } from '@web3auth/base';
 import { chains } from 'chain-registry';
+import { pathToFileURL } from 'url';
 
 import { Web3AuthSigner } from './signer';
 import { Web3AuthClientOptions } from './types';
@@ -14,7 +15,6 @@ import {
   sendAndListenOnce,
   WEB3AUTH_REDIRECT_AUTO_CONNECT_KEY,
 } from './utils';
-import { pathToFileURL } from 'url';
 
 // In case these get overwritten by an attacker.
 const terminate =
@@ -77,16 +77,7 @@ export class Web3AuthClient implements WalletClient {
 
     // Spawn a new worker that will handle the private key and signing.
     const worker = new Worker(
-      new URL(
-        `./web3auth.worker.${
-          // CommonJS
-          typeof module !== 'undefined' && typeof exports !== 'undefined'
-            ? ''
-            : // ESM
-              'm'
-        }js`,
-        pathToFileURL(__filename).toString()
-      )
+      new URL('./web3auth.worker.js', pathToFileURL(__filename).toString())
     );
 
     // Begin two-step handshake to authenticate with the worker and exchange
