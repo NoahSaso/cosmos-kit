@@ -5,7 +5,6 @@ import { makeADR36AminoSignDoc } from '@keplr-wallet/cosmos';
 import eccrypto from '@toruslabs/eccrypto';
 import { UserInfo } from '@web3auth/base';
 import { chains } from 'chain-registry';
-import { pathToFileURL } from 'url';
 
 import { Web3AuthSigner } from './signer';
 import { Web3AuthClientOptions } from './types';
@@ -76,9 +75,7 @@ export class Web3AuthClient implements WalletClient {
       .toString('hex');
 
     // Spawn a new worker that will handle the private key and signing.
-    const worker = new Worker(
-      new URL('./web3auth.worker.js', pathToFileURL(__filename).toString())
-    );
+    const worker = new Worker(new URL('./web3auth.worker.js', import.meta.url));
 
     // Begin two-step handshake to authenticate with the worker and exchange
     // communication public keys as well as the wallet private key.

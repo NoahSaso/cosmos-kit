@@ -23,9 +23,9 @@
     "!CHANGELOG.md"
   ],
   "scripts": {
-    "build:cjs": "yarn tsc -p tsconfig.json --outDir dist --module commonjs",
-    "build:mjs": "yarn tsc -p tsconfig.json --outDir mjs --module es2022 --declaration false",
-    "build": "rm -rf dist && yarn build:cjs && yarn build:mjs && find mjs -type f -name *.js -exec rename -S '.js' '.mjs' {} +  && find mjs -type f -name *.mjs -exec rename -S 'mjs/' 'dist/' {} + && rm -rf mjs",
+    "build:cjs": "yarn tsc -p tsconfig.json --outDir cjs --module commonjs",
+    "build:mjs": "yarn tsc -p tsconfig.json --outDir dist --module es2022 --declaration false",
+    "build": "rm -rf dist && yarn build:mjs",
     "prepare": "npm rum build",
     "lint": "eslint --ext .tsx,.ts .",
     "format": "eslint --ext .tsx,.ts --fix .",
@@ -55,14 +55,12 @@
     ]
   },
   "dependencies": {
-    "@chainsafe/ssz": "^0.11.1",
     "@cosmos-kit/core": "^2.0.1-beta.2",
-    "@ethersproject/providers": "^5.7.2",
     "@solana/web3.js": "^1.77.3",
     "@toruslabs/eccrypto": "^2.1.1",
-    "@web3auth/base": "^5.1.0",
-    "@web3auth/no-modal": "^5.1.0",
-    "@web3auth/openlogin-adapter": "^5.1.1",
+    "@web3auth/base": "^5.2.0",
+    "@web3auth/no-modal": "^5.2.0",
+    "@web3auth/openlogin-adapter": "^5.2.1",
     "libsodium-wrappers-sumo": "^0.7.11"
   },
   "peerDependencies": {
